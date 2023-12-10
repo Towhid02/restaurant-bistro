@@ -1,5 +1,6 @@
 import SectionTitle from "../Components/SectionTitle";
 import img from "../../public/home/featured.jpg"
+import { Link } from "react-router-dom";
 
 
 const Features = () => {
@@ -21,7 +22,9 @@ const Features = () => {
                
                    <p className=" font-mooli"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Error voluptate facere, deserunt dolores maiores quod nobis quas quasi. Eaque repellat recusandae ad laudantium tempore consequatur consequuntur omnis ullam maxime tenetur.
                     </p>
-                    <button className="btn btn-outline border-0 text-white border-b-4 mt-4">Order Now</button>
+                    <Link to={"/order/salad"}>
+            <button className="btn btn-outline border-0 text-white border-b-4 mt-4">Order Now</button>
+            </Link>
                     </div>
             </div>
         </div>

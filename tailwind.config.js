@@ -16,6 +16,8 @@ export default {
       },
       backgroundImage : {
         'featureBg': "url(../../public/home/featured.jpg)",
+        'chefBg': "url(../../public/home/chef-service.jpg)",
+        'menuBg': "url(../../public/menu/banner3.jpg)"
       }
     },
   },

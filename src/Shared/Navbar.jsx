@@ -1,11 +1,34 @@
+import { Link } from "react-router-dom";
+import { AuthContext } from "../Provider/AuthProvider";
+import { useContext } from "react";
+import { FaShoppingCart } from 'react-icons/fa';
+import useCart from "../Hook/useCart";
 
 
 const Navbar = () => {
+  const [cart] = useCart()
+  const { user, logOut } = useContext(AuthContext);
+  const handleLogOut = () => {
+    logOut()
+        .then(() => { })
+        .catch(error => console.log(error));
+}
     const links = <>
-            <li><a>Item 1</a></li>
-            <li><a>Submenu 1</a></li>
-            <li><a>Submenu 2</a></li>   
-            <li><a>Item 3</a></li>
+            <li ><Link to="/">HOME</Link></li>
+            <li><Link to="/menus">MENU</Link></li>   
+            <li><Link to="/secret">Secret</Link></li>   
+            <li><Link to="/dashboard">Dashboard</Link></li>   
+            <li><Link to="/order/salad">ORDER</Link></li>   
+            <li>
+            <Link to="/dashboard/cart">
+                <button className="btn">
+                    <FaShoppingCart className="mr-2"></FaShoppingCart>
+                    <div className="badge badge-secondary">+{cart.length}</div>
+                </button>
+            </Link>
+        </li>
+           
+           
     </>
     return (
         <div className="navbar max-w-screen-xl fixed z-30 bg-opacity-50 bg-black text-white ">
@@ -19,7 +42,10 @@ const Navbar = () => {
 
             </ul>
           </div>
-          <a className="btn btn-ghost text-xl">daisyUI</a>
+          <div className=" flex flex-col text-justify uppercase font-itim font-bold text-orange-300 px-5">
+            <p className="text-xl">T o w h i d</p>
+            <p>Restaurant</p>
+          </div>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
@@ -27,7 +53,14 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="navbar-end">
-          <a className="btn">Button</a>
+        {
+            user ? <>
+                <span>{user?.displayName}</span>
+                <button onClick={handleLogOut} className="btn btn-ghost">LogOut</button>
+            </> : <>
+                <li><Link to="/login">Login</Link></li>
+            </>
+        }  
         </div>
       </div>
     );
